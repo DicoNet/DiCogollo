@@ -1,0 +1,16 @@
+<div class="d-flex">
+  <div *ngFor="let seed of seeds" class="card mr-3" style="width: 18rem;">
+    <img [src]="seed.image" class="card-img-top" [alt]="seed.name">
+    <div class="card-body d-flex flex-column justify-content-around text-center">
+      <h5 class="card-title" style="min-height: 100px;">{{seed.name}}</h5>
+      <p class="card-text text-primary font-weight-bold">{{seed.price | currency}}</p>
+      <p class="card-text font-weight-bold text-danger" *ngIf=" ! seed.stock">Sin stock</p>
+      <div *ngIf="seed.stock">
+        <app-input-number [(quantity)]="seed.quantity"  [max]="seed.stock" (maxReached)="maxReached($event)"></app-input-number>
+        Cant: {{seed.quantity}}
+        <button class="btn btn-primary mt-3" (click)="addToCart(seed)" *ngIf="seed.quantity > 0">Añadir</button>
+        <p class="card-text font-weight-bold text-success mt-3">Stock disponible ({{seed.stock}})</p>
+       
+      </div>
+    </div>
+  </div>
