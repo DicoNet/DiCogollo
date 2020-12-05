@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SeedCartService } from '../seed-cart.service';
+import { SeedCartComponent } from '../seed-cart/seed-cart.component';
 import { Seed } from './seed';
 
 @Component({
@@ -47,11 +49,18 @@ export class SeedListComponent implements OnInit {
   },
 ];
 
-  constructor() { }
+  constructor(private seedcart: SeedCartService) { 
+
+  }
 
   ngOnInit(): void {
   }
+  addToCart(seed) :void {
+    this.seedcart.addToCart(seed);
+    seed.stock -= seed.quantity;
+    seed.quantity =0;
 
+  }
 
 
 }

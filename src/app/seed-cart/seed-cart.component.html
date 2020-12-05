@@ -1,1 +1,6 @@
-<H3>carrito de comprass</H3>
+<H3>carrito de compras</H3>
+<ul>
+    <li *ngFor="let seed of (cartList$ | async)">
+    {{seed.name}} :{{seed.quantity}}
+    </li>
+</ul>
